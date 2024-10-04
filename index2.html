@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounty Board</title>
+
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .bounty-board {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .poster {
+            width: 200px;
+            height: 300px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: inline-block;
+            position: relative;
+        }
+
+        .front, .back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border: 2px solid #000;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .front {
+            background-color: #ffe5b4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .back {
+            background-color: #fff;
+            transform: rotateY(180deg);
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .poster.flip .front {
+            transform: rotateY(180deg);
+        }
+
+        .poster.flip .back {
+            transform: rotateY(0deg);
+        }
+
+        .status {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .captured {
+            color: red;
+        }
+
+        .missing {
+            color: green;
+        }
+
+        .poster img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bounty Board</h1>
+    <p>Click on each poster to flip it and see the details.</p>
+
+    <!-- Bounty Board with clickable posters -->
+    <div class="bounty-board">
+        <div class="poster" id="poster1">
+            <div class="front">
+                <img src="https://via.placeholder.com/200x200" alt="Captured Poster 1">
+                <div class="status captured">Captured</div>
+            </div>
+            <div class="back">
+                <h2>Name: test</h2>
+                <p>Details: A notorious criminal captured in the northern region.</p>
+            </div>
+        </div>
+
+        <div class="poster" id="poster2">
+            <div class="front">
+                <img src="https://via.placeholder.com/200x200" alt="Captured Poster 2">
+                <div class="status captured">Captured</div>
+            </div>
+            <div class="back">
+                <h2>test</h2>
+                <p>Details: Involved in multiple robberies, captured last week.</p>
+            </div>
+        </div>
+
+        <div class="poster" id="poster3">
+            <div class="front">
+                <img src="https://via.placeholder.com/200x200" alt="Captured Poster 3">
+                <div class="status captured">Still At Large</div>
+            </div>
+            <div class="back">
+                <h2>Name: Mike Johnson</h2>
+                <p>Details: Known for his crafty escapes.</p>
+            </div>
+        </div>
+
+        <div class="poster" id="poster4">
+            <div class="front">
+                <img src="https://pbs.twimg.com/profile_images/1123720923272613888/MTGCMx6F_400x400.jpg" alt="Captured Poster 4">
+                <div class="status captured">Captured</div>
+            </div>
+            <div class="back">
+                <h2>Name: Emily Davis</h2>
+                <p>Details: Master thief, caught during a heist.</p>
+            </div>
+        </div>
+
+        <div class="poster" id="poster5">
+            <div class="front">
+                <img src="https://via.placeholder.com/200x200" alt="Wanted Poster 5">
+                <div class="status missing">Captured</div>
+            </div>
+            <div class="back">
+                <h2>Name: Tom Brown</h2>
+                <p>Details: Dangerous criminal still missing. Last seen in the eastern region.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // Select all elements with the class 'poster'
+        const posters = document.querySelectorAll('.poster');
+
+        // Add a click event listener to each poster
+        posters.forEach(function(poster) {
+            poster.addEventListener('click', function() {
+                // Toggle the 'flip' class on the clicked poster
+                poster.classList.toggle('flip');
+            });
+        });
+    </script>
+</body>
+</html>
